@@ -48,7 +48,7 @@ class MainTabVC: UITabBarController {
     
     private lazy var quoteVC = QuoteVC(sevice: fetchService, storageService: storageService)
     private lazy var allQuotesVC = AllQuotesVC(storageService: storageService)
-    private var categoriesVC = CategoriesVC()
+    private lazy var categoriesVC = CategoriesVC(service: fetchService, storageService: storageService)
 
     override func viewDidLoad() {
         super.viewDidLoad()

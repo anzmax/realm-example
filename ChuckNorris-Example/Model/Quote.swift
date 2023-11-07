@@ -4,7 +4,6 @@ import RealmSwift
 class Quote: Object, Codable {
     @Persisted var value: String
     @Persisted var createdAt: String
-    let categories = LinkingObjects(fromType: Category.self, property: "quotes")
     
     private enum CodingKeys: String, CodingKey {
         case value
@@ -12,7 +11,7 @@ class Quote: Object, Codable {
     }
 }
 
-class Category: Object {
+class Category: Object, Codable {
     @Persisted var name: String
-    let quotes = List<Quote>()
+    @Persisted var quotes = List<Quote>()
 }

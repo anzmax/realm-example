@@ -21,6 +21,7 @@
 		F43952DC2AF0FB270058B811 /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43952DB2AF0FB270058B811 /* Quote.swift */; };
 		F43952DE2AF0FB480058B811 /* FetchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43952DD2AF0FB470058B811 /* FetchService.swift */; };
 		F43952E02AF100F60058B811 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43952DF2AF100F60058B811 /* StorageService.swift */; };
+		F43953602AF8D1C80058B811 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F439535F2AF8D1C80058B811 /* DetailVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		F43952DB2AF0FB270058B811 /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 		F43952DD2AF0FB470058B811 /* FetchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchService.swift; sourceTree = "<group>"; };
 		F43952DF2AF100F60058B811 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		F439535F2AF8D1C80058B811 /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				F43952CF2AF0F7920058B811 /* CategoriesVC.swift */,
+				F439535F2AF8D1C80058B811 /* DetailVC.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 				F43952D32AF0F7920058B811 /* CategoriesVC.swift in Sources */,
 				F43952D02AF0F7920058B811 /* AllQuotesVC.swift in Sources */,
 				F43952B22AF0F7300058B811 /* AppDelegate.swift in Sources */,
+				F43953602AF8D1C80058B811 /* DetailVC.swift in Sources */,
 				F43952B42AF0F7300058B811 /* SceneDelegate.swift in Sources */,
 				F43952D22AF0F7920058B811 /* MainTabVC.swift in Sources */,
 				F43952DC2AF0FB270058B811 /* Quote.swift in Sources */,

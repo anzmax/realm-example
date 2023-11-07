@@ -8,13 +8,18 @@ enum NetworkError: Error {
 
 class FetchService {
     
-    //https://api.chucknorris.io/jokes/random
-    
-    func fetchQuote(completion: @escaping (Result<Quote, NetworkError>) -> Void) {
+    func fetchQuote(category: String? = nil, completion: @escaping (Result<Quote, NetworkError>) -> Void) {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "api.chucknorris.io"
         urlComponents.path = "/jokes/random"
+        
+        if let category {
+            urlComponents.queryItems = [
+                URLQueryItem(name: "category", value: category)
+            ]
+        }
+        
         
         guard let url = urlComponents.url else {
             return completion(.failure(.emptyUrl))
@@ -46,12 +51,11 @@ class FetchService {
         }.resume()
     }
     
-    func fetchCategories(completion: @escaping (Result<[String], NetworkError>) -> Void) {
+    func fetchCategories(completion: @escaping (Result<[Category], NetworkError>) -> Void) {
         var urlComponents = URLComponents()
         urlComponents.scheme = "https"
         urlComponents.host = "api.chucknorris.io"
-        urlComponents.path = "/jokes/categories"
-        
+        urlComponents.path = "/jokes/categories" 
         guard let url = urlComponents.url else {
             return completion(.failure(.emptyUrl))
         }
@@ -67,7 +71,15 @@ class FetchService {
             }
             
             do {
-                let categories = try JSONDecoder().decode([String].self, from: data)
+                let strings = try JSONDecoder().decode([String].self, from: data)
+                
+                let categories = strings.compactMap { value in
+                    let category = Category()
+                    category.name = value
+                    return category
+                }
+                print(categories)
+                
                 completion(.success(categories))
             } catch {
                 completion(.failure(.parsingInvalid))

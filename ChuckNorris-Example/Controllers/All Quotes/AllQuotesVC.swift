@@ -30,8 +30,8 @@ class AllQuotesVC: UIViewController {
         setupViews()
         setupConstraints()
         
-        quotes = storageService.load().sorted(by: {$0.createdAt < $1.createdAt})
-        tableView.reloadData()
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadQuotes), name: NSNotification.Name("NewQuoteAdded"), object: nil)
+        reloadQuotes()
     }
     
     func setupViews() {
@@ -47,6 +47,15 @@ class AllQuotesVC: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+    
+    @objc func reloadQuotes() {
+        quotes = storageService.load().sorted(by: {$0.createdAt < $1.createdAt})
+        tableView.reloadData()
+    }
+    
+    deinit {
+         NotificationCenter.default.removeObserver(self)
+     }
 }
 
 extension AllQuotesVC: UITableViewDataSource, UITableViewDelegate {
@@ -59,6 +68,17 @@ extension AllQuotesVC: UITableViewDataSource, UITableViewDelegate {
         let quote = quotes[indexPath.row]
         cell.update(with: quote)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let quoteToDelete = quotes[indexPath.row]
+            
+            storageService.delete(quote: quoteToDelete)
+            
+            quotes.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
 }
 
